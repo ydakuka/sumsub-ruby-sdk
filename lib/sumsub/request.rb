@@ -186,6 +186,7 @@ module Sumsub
         resource: resource, 
         body: body, 
         method: method,
+        secret_key: @secret_key,
       )
 
       {

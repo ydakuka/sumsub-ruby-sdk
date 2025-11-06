@@ -13,3 +13,6 @@
 
 ### 0.2.1
   - New rejection labels ([PR](ydakuka:replace-old-reject-label-with-new-ones))
+
+### 0.2.2
+  - Update Subsub types ([PR](https://github.com/rwehresmann/sumsub-ruby-sdk/pull/10))

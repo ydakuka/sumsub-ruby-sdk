@@ -162,15 +162,15 @@ module Sumsub
       parse_response(response)
     end
 
-    # API docs: https://developers.sumsub.com/api-reference/#verifying-webhook-sender
+    # API docs: https://docs.sumsub.com/docs/webhooks#verify-webhook-sender
     # Your payload need to be informed as a string.
-    def verify_webhook_sender(webhook_secret_key, payload)
-      resource = "inspectionCallbacks/testDigest?secretKey=#{webhook_secret_key}"
+    def verify_webhook_sender(webhook_secret_key, payload, digest_alg = 'HMAC_SHA1_HEX')
+      resource = "inspectionCallbacks/testDigest?secretKey=#{webhook_secret_key}&digestAlg=#{digest_alg}"
       headers = build_header(
         resource, 
         method: 'POST', 
         content_type: 'text/plain',
-        accept: 'text/plain',
+        accept: nil,
         body: payload
       )
 
@@ -218,7 +218,7 @@ module Sumsub
         "X-App-Access-Ts": epoch_time.to_s.encode("UTF-8"),
         "Accept": accept,
         "Content-Type": content_type
-      }
+      }.compact!
     end
 
     def parse_response(response)
@@ -226,5 +226,3 @@ module Sumsub
     end
   end
 end
-
-
